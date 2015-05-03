@@ -7,7 +7,7 @@ angular.module('todo', ['ionic'])
 
 .controller('TodoCtrl', function($scope, $http) {
 //$http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
-//$http.defaults.headers.common['Authorization'] = 'Basic cm9vdDpyb290MTIzIQ==';
+$http.defaults.headers.common['Authorization'] = 'Basic cm9vdDpyb290MTIzIQ==';
  $http.get('http://localhost:8080/kitas').then(function(resp) {
     console.log('Success', resp);
     // For JSON responses, resp.data contains the result
