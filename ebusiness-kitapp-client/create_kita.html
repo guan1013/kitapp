@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="utf-8">
+	<title>KITApp Web Client</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript">
+	//callback handler for form submit
+$("#ajaxform").submit(function(e)
+{
+    var postData = $(this).serializeArray();
+    var formURL = "http://localhost:8080/kitas"
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR) 
+        {
+            //data: return data from server
+			alert("Data: " + data);
+			alert("Text Status: " + textStatus);
+        },
+        error: function(jqXHR, textStatus, errorThrown) 
+        {
+            //if fails    
+			alert("Data: " + data);
+			alert("Text Status: " + errorThrown);			
+        }
+    }) // using the done promise callback
+            .done(function(data) {
+
+                // log data to the console so we can see
+                console.log(data); 
+
+                // here we will handle errors and validation messages
+            });;
+    e.preventDefault(); //STOP default action
+    e.unbind(); //unbind. to stop multiple form submit.
+});
+ 
+$("#ajaxform").submit(); //Submit  the FORM
+</script>
+</head>
+<body>
+	<h1>KITApp Web Client</h1>
+	<form name="ajaxform" id="ajaxform"  method="POST">
+    First Name: <input type="text" name="fname" value =""/> <br/>
+    Last Name: <input type="text" name="lname" value ="" /> <br/>
+    Email : <input type="text" name="email" value=""/> <br/>
+	<input type="submit">
+</form>
+</body>
+</html>
